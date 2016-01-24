@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Main Activity for show start game. Also can you heard the initial sound for started.
+ */
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * This method create the main activity and try to hold the "escenaries".
+     * This method create the main activity and try to hold the "scenarios".
      * @param savedInstanceState
      */
     @Override
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        SoundMediaCustom media = new SoundMediaCustom(getBaseContext());
+        media.play();
     }
 
     /**

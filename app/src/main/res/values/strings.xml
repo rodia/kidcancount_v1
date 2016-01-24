@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">KidCanCount</string>
     <string name="action_settings">Settings</string>
-    <string name="label_start">New Button</string>
+    <string name="label_start">Start Game</string>
 </resources>
