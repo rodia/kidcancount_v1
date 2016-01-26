@@ -33,13 +33,39 @@ public class SoundMediaCustom {
     private Context context;
 
     /**
+     * Define if the media is played.
+     */
+    private boolean isEnable;
+
+    /**
      * Start media Sound.
      * @param context
      */
     public SoundMediaCustom(Context context) {
+        setDefault(context, true, true);
+    }
+
+    /**
+     * Start media sound with parameters.
+     * @param context
+     * @param loop
+     * @param isEnable
+     */
+    public SoundMediaCustom(Context context, boolean loop, boolean isEnable) {
+        setDefault(context, loop, isEnable);
+    }
+
+    /**
+     * Set default values for this object.
+     * @param context
+     * @param loop
+     * @param isEnable
+     */
+    protected void setDefault(Context context, boolean loop, boolean isEnable) {
         setContext(context);
         setDefaultResource();
-        setLoop(true);
+        setLoop(loop);
+        setIsEnable(isEnable);
         mediaPlayer = getMediaPlayer();
         mediaPlayer.setLooping(isLoop());
     }
@@ -67,7 +93,9 @@ public class SoundMediaCustom {
      * Play to current media setter.
      */
     public void play() {
-        mediaPlayer.start();
+        if (isEnable()) {
+            mediaPlayer.start();
+        }
     }
 
     /**
@@ -175,5 +203,21 @@ public class SoundMediaCustom {
      */
     public void pause() {
         mediaPlayer.pause();
+    }
+
+    /**
+     * Get if play can do sound.
+     * @return
+     */
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    /**
+     * Set state for play the current source.
+     * @param isEnable
+     */
+    public void setIsEnable(boolean isEnable) {
+        this.isEnable = isEnable;
     }
 }

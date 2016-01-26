@@ -65,6 +65,18 @@ public class MainActivity extends AppCompatActivity {
         media.play();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        media.play();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        media.pause();
+    }
+
     /**
      * Setup the menu options.
      * @param menu
