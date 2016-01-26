@@ -23,6 +23,11 @@ public class SoundMediaCustom {
     private int resource;
 
     /**
+     * Set loop for resource.
+     */
+    private boolean loop;
+
+    /**
      * Save to current context.
      */
     private Context context;
@@ -34,7 +39,9 @@ public class SoundMediaCustom {
     public SoundMediaCustom(Context context) {
         setContext(context);
         setDefaultResource();
+        setLoop(true);
         mediaPlayer = getMediaPlayer();
+        mediaPlayer.setLooping(isLoop());
     }
 
     /**
@@ -103,6 +110,22 @@ public class SoundMediaCustom {
     }
 
     /**
+     * Get current loop setter.
+     * @return
+     */
+    public boolean isLoop() {
+        return loop;
+    }
+
+    /**
+     * Set loop for the current player.
+     * @param loop
+     */
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
+    /**
      * Can play one resource located in the net. you need set the value myUrl and
      * @param myUri
      */
@@ -138,5 +161,19 @@ public class SoundMediaCustom {
         }
 
         mediaPlayer.start();
+    }
+
+    /**
+     * Stop the current play.
+     */
+    public void stop() {
+        mediaPlayer.pause();
+    }
+
+    /**
+     * Pause the current play.
+     */
+    public void pause() {
+        mediaPlayer.pause();
     }
 }

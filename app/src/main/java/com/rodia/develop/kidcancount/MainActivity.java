@@ -15,6 +15,11 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     /**
+     * Hold the current media sound.
+     */
+    private SoundMediaCustom media;
+
+    /**
      * This method create the main activity and try to hold the "scenarios".
      * @param savedInstanceState
      */
@@ -35,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SoundMediaCustom media = new SoundMediaCustom(getBaseContext());
+        media = new SoundMediaCustom(getApplicationContext());
         media.play();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        media.stop();
     }
 
     /**
@@ -45,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        media.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        media.play();
     }
 
     /**
