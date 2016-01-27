@@ -52,6 +52,10 @@ public class GameView extends SurfaceView {
         gameLoopThread = new GameLoopThread(this);
         getHolder().addCallback(new SurfaceHolder.Callback() {
 
+            /**
+             * Manage the event when the view is destroyed.
+             * @param holder
+             */
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 boolean retry = true;
@@ -64,6 +68,10 @@ public class GameView extends SurfaceView {
                 }
             }
 
+            /**
+             * Prepare the game initialized the thread and run the loop game.
+             * @param holder
+             */
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 createSprites();
@@ -71,6 +79,12 @@ public class GameView extends SurfaceView {
                 gameLoopThread.start();
             }
 
+            /**
+             * @param holder
+             * @param format
+             * @param width
+             * @param height
+             */
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
@@ -84,15 +98,15 @@ public class GameView extends SurfaceView {
      */
     private void createSprites() {
         sprites.add(createSprite(R.drawable.catrun));
-//        sprites.add(createSprite(R.drawable.catrun2));
-//        sprites.add(createSprite(R.drawable.catrun3));
-//        sprites.add(createSprite(R.drawable.catrun4));
-//        sprites.add(createSprite(R.drawable.catrun5));
-//        sprites.add(createSprite(R.drawable.catrun6));
-//        sprites.add(createSprite(R.drawable.catrun7));
-//        sprites.add(createSprite(R.drawable.catrun8));
-//        sprites.add(createSprite(R.drawable.catrun9));
-//        sprites.add(createSprite(R.drawable.catrun10));
+        sprites.add(createSprite(R.drawable.catrun2));
+        sprites.add(createSprite(R.drawable.catrun3));
+        sprites.add(createSprite(R.drawable.catrun4));
+        sprites.add(createSprite(R.drawable.catrun5));
+        sprites.add(createSprite(R.drawable.catrun6));
+        sprites.add(createSprite(R.drawable.catrun7));
+        sprites.add(createSprite(R.drawable.catrun8));
+        sprites.add(createSprite(R.drawable.catrun9));
+        sprites.add(createSprite(R.drawable.catrun10));
     }
 
     /**
