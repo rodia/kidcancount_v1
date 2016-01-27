@@ -14,6 +14,11 @@ public class PlayActivity extends AppCompatActivity {
     private GameView game;
 
     /**
+     * Hold the current media sound.
+     */
+    private SoundMediaCustom media;
+
+    /**
      * Start to play scenery
      * @param savedInstanceState
      */
@@ -23,31 +28,54 @@ public class PlayActivity extends AppCompatActivity {
 
         game = new GameView(this);
         setContentView(game);
+
+        media = new SoundMediaCustom(getApplicationContext());
+        media.setResource(R.raw.thegame);
+        media.play();
     }
 
+    /**
+     * Resume the sound for the game if is enable.
+     */
     @Override
     protected void onStart() {
         super.onStart();
-        // The activity is about to become visible.
+        media.play();
     }
+
+    /**
+     * Resume the sound for the game if is enable.
+     */
     @Override
     protected void onResume() {
         super.onResume();
-        // The activity has become visible (it is now "resumed").
+        media.play();
     }
+
+    /**
+     * Pause the sound the play game.
+     */
     @Override
     protected void onPause() {
         super.onPause();
-        // Another activity is taking focus (this activity is about to be "paused").
+        media.pause();
     }
+
+    /**
+     * Stop the play sound when the app is stopped.
+     */
     @Override
     protected void onStop() {
         super.onStop();
-        // The activity is no longer visible (it is now "stopped")
+        media.stop();
     }
+
+    /**
+     * Stop the play sound when the app is destroyed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // The activity is about to be destroyed.
+        media.stop();
     }
 }

@@ -1,5 +1,6 @@
 package com.rodia.develop.kidcancount;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 /**
  * Main Activity for show start game. Also can you heard the initial sound for started.
@@ -42,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         media = new SoundMediaCustom(getApplicationContext());
         media.play();
+
+        Button button = (Button) findViewById(R.id.button_play);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent;
+                intent = new Intent(getApplicationContext(), PlayActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

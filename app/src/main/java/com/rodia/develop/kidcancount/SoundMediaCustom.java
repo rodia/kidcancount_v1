@@ -35,7 +35,7 @@ public class SoundMediaCustom {
     /**
      * Define if the media is played.
      */
-    private boolean isEnable;
+    private static boolean isEnable;
 
     /**
      * Start media Sound.
@@ -66,8 +66,6 @@ public class SoundMediaCustom {
         setDefaultResource();
         setLoop(loop);
         setIsEnable(isEnable);
-        mediaPlayer = getMediaPlayer();
-        mediaPlayer.setLooping(isLoop());
     }
 
     /**
@@ -94,6 +92,8 @@ public class SoundMediaCustom {
      */
     public void play() {
         if (isEnable()) {
+            mediaPlayer = getMediaPlayer();
+            mediaPlayer.setLooping(isLoop());
             mediaPlayer.start();
         }
     }
@@ -215,9 +215,9 @@ public class SoundMediaCustom {
 
     /**
      * Set state for play the current source.
-     * @param isEnable
+     * @param enable
      */
-    public void setIsEnable(boolean isEnable) {
-        this.isEnable = isEnable;
+    public void setIsEnable(boolean enable) {
+        isEnable = enable;
     }
 }

@@ -7,23 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * This class only work with view.
+ * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class ResultActivityFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public ResultActivityFragment() {
     }
 
-    /**
-     * Develop the interface for first view.
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_result, container, false);
     }
 }

@@ -44,11 +44,17 @@ public class GameView extends SurfaceView {
     private Bitmap bmpBlood;
 
     /**
+     * Parent to this class. This link help to maintain the control of game.
+     */
+    private Context context;
+
+    /**
      * Construct for this object.
      * @param context
      */
     public GameView(Context context) {
         super(context);
+        this.context = context;
         gameLoopThread = new GameLoopThread(this);
         getHolder().addCallback(new SurfaceHolder.Callback() {
 
