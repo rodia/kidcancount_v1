@@ -183,7 +183,7 @@ public class GameView extends SurfaceView {
                         sprites.remove(sprite);
                         TempSprite temp = new TempSprite(temps, this, x, y, bmpBlood);
                         temp.setCount(++Counter.count);
-                        temp.speakNumber(getPlayActivity());
+                        //temp.speakNumber(getPlayActivity());
                         temps.add(temp);
                         break;
                     }

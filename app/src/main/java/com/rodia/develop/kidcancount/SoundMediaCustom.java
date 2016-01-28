@@ -1,9 +1,14 @@
 package com.rodia.develop.kidcancount;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -36,6 +41,11 @@ public class SoundMediaCustom {
      * Define if the media is played.
      */
     private static boolean isEnable;
+
+    /**
+     * Set Parent for this sound media.
+     */
+    private Activity parent;
 
     /**
      * Start media Sound.
@@ -91,7 +101,7 @@ public class SoundMediaCustom {
      * Play to current media setter.
      */
     public void play() {
-        if (isEnable()) {
+        if (getPreferredForSound()) {
             mediaPlayer = getMediaPlayer();
             mediaPlayer.setLooping(isLoop());
             mediaPlayer.start();
@@ -195,14 +205,18 @@ public class SoundMediaCustom {
      * Stop the current play.
      */
     public void stop() {
-        mediaPlayer.pause();
+        if (getPreferredForSound()) {
+            mediaPlayer.pause();
+        }
     }
 
     /**
      * Pause the current play.
      */
     public void pause() {
-        mediaPlayer.pause();
+        if (getPreferredForSound()) {
+            mediaPlayer.pause();
+        }
     }
 
     /**
@@ -219,5 +233,23 @@ public class SoundMediaCustom {
      */
     public void setIsEnable(boolean enable) {
         isEnable = enable;
+    }
+
+    public void setParent(Activity parent) {
+        this.parent = parent;
+    }
+
+    public Activity getParent() {
+        return parent;
+    }
+
+    /**
+     * Get the value for preferred sound setting.
+     * @return
+     */
+    protected boolean getPreferredForSound() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean syncSoundPref = sharedPref.getBoolean(SettingsActivity.KEY_PREF_SOUND, true);
+        return syncSoundPref;
     }
 }
