@@ -1,5 +1,6 @@
 package com.rodia.develop.kidcancount;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -77,5 +78,14 @@ public class PlayActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         media.stop();
+    }
+
+    /**
+     * Show the Result Activity for the game over.
+     */
+    public void showResultActivity() {
+        Intent intent;
+        intent = new Intent(getApplicationContext(), ResultActivity.class);
+        startActivity(intent);
     }
 }

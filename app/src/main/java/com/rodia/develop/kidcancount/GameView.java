@@ -1,6 +1,7 @@
 package com.rodia.develop.kidcancount;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -49,6 +50,11 @@ public class GameView extends SurfaceView {
     private Context context;
 
     /**
+     * Define the total counter for this game.
+     */
+    private int untilCounter;
+
+    /**
      * Construct for this object.
      * @param context
      */
@@ -70,7 +76,8 @@ public class GameView extends SurfaceView {
                     try {
                         gameLoopThread.join();
                         retry = false;
-                    } catch (InterruptedException e) {}
+                    } catch (InterruptedException e) {
+                    }
                 }
             }
 
@@ -103,6 +110,7 @@ public class GameView extends SurfaceView {
      * Get all current sprites for the game.
      */
     private void createSprites() {
+        setUntilCounter(10);
         sprites.add(createSprite(R.drawable.catrun));
         sprites.add(createSprite(R.drawable.catrun2));
         sprites.add(createSprite(R.drawable.catrun3));
@@ -147,6 +155,17 @@ public class GameView extends SurfaceView {
     }
 
     /**
+     * Check if is game over.
+     * @return
+     */
+    protected boolean isFinishTheGame() {
+        if (Counter.count >= getUntilCounter()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Set action for touch effect to develop the game.
      * @param event
      * @return
@@ -168,8 +187,35 @@ public class GameView extends SurfaceView {
                         break;
                     }
                 }
+                if (isFinishTheGame()) {
+                    getPlayActivity().showResultActivity();
+                }
             }
         }
         return true;
+    }
+
+    /**
+     * Get current parent for this object.
+     * @return
+     */
+    public PlayActivity getPlayActivity() {
+        return (PlayActivity)context;
+    }
+
+    /**
+     * Get Until when. Define the total of element showed.
+     * @return
+     */
+    public int getUntilCounter() {
+        return untilCounter;
+    }
+
+    /**
+     * Set the total elements for this game.
+     * @param untilCounter
+     */
+    public void setUntilCounter(int untilCounter) {
+        this.untilCounter = untilCounter;
     }
 }

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_start"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/button" />
 </LinearLayout>

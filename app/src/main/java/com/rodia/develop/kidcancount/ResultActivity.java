@@ -1,14 +1,22 @@
 package com.rodia.develop.kidcancount;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
+/**
+ * This class have the responsibility for show the result of the game.
+ */
 public class ResultActivity extends AppCompatActivity {
+    /**
+     * Manage the media sound for this view.
+     */
+    private SoundMediaCustom media;
 
+    /**
+     * Start the view for show the result, and init the play sound.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,15 +24,56 @@ public class ResultActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        media = new SoundMediaCustom(getApplicationContext());
+        media.setResource(R.raw.thegame);
+        media.play();
+    }
+
+    /**
+     * Resume the sound for the game if is enable.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        media.play();
+    }
+
+    /**
+     * Resume the sound for the game if is enable.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        media.play();
+    }
+
+    /**
+     * Pause the sound the play game.
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        media.pause();
+    }
+
+    /**
+     * Stop the play sound when the app is stopped.
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        media.stop();
+    }
+
+    /**
+     * Stop the play sound when the app is destroyed.
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        media.stop();
     }
 
 }

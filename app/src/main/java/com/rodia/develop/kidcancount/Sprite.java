@@ -44,17 +44,50 @@ public class Sprite {
     private GameView gameView;
 
     /**
-     *
+     * Current image for show.
      */
     private Bitmap bmp;
+
+    /**
+     * Put the image in x coordinate.
+     */
     private int x = 0;
+
+    /**
+     * Put the image in y coordinate.
+     */
     private int y = 0;
+
+    /**
+     * X component speed.
+     */
     private int xSpeed;
+
+    /**
+     * Y component speed.
+     */
     private int ySpeed;
+
+    /**
+     * Current frame for show in the frame.
+     */
     private int currentFrame = 0;
+
+    /**
+     * Width for one frame in the sprint.
+     */
     private int width;
+
+    /**
+     * Height image in the sprint.
+     */
     private int height;
 
+    /**
+     * Initialize the Sprite with a image sprite and init the values for speed and direction.
+     * @param gameView
+     * @param bmp
+     */
     public Sprite(GameView gameView, Bitmap bmp) {
         this.width = bmp.getWidth() / BMP_COLUMNS;
         this.height = bmp.getHeight() / BMP_ROWS;
@@ -68,6 +101,9 @@ public class Sprite {
         ySpeed = rnd.nextInt(MAX_SPEED * 2) - MAX_SPEED;
     }
 
+    /**
+     * Update the movement of animation in one sprint.
+     */
     private void update() {
         if (x >= gameView.getWidth() - width - xSpeed || x + xSpeed <= 0) {
             xSpeed = -xSpeed;
@@ -80,6 +116,10 @@ public class Sprite {
         currentFrame = ++currentFrame % BMP_COLUMNS;
     }
 
+    /**
+     * Update the values for the movement of one sprite.
+     * @param canvas
+     */
     public void onDraw(Canvas canvas) {
         update();
         int srcX = currentFrame * width;
@@ -89,12 +129,22 @@ public class Sprite {
         canvas.drawBitmap(bmp, src, dst, null);
     }
 
+    /**
+     * Return the current direction of one sprite.
+     * @return
+     */
     private int getAnimationRow() {
         double dirDouble = (Math.atan2(xSpeed, ySpeed) / (Math.PI / 2) + 2);
         int direction = (int) Math.round(dirDouble) % BMP_ROWS;
         return DIRECTION_TO_ANIMATION_MAP[direction];
     }
 
+    /**
+     * Check if have two or more images over one on a moment the game.
+     * @param x2
+     * @param y2
+     * @return
+     */
     public boolean isCollition(float x2, float y2) {
         return x2 > x && x2 < x + width && y2 > y && y2 < y + height;
     }
