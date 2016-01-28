@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         media = new SoundMediaCustom(getApplicationContext());
         media.play();
 
+        setListeners();
+    }
+
+    /**
+     * Set the listener for all action button in the view.
+     */
+    private void setListeners() {
         Button button = (Button) findViewById(R.id.button_play);
         button.setOnClickListener(new View.OnClickListener() {
 
